@@ -6,6 +6,10 @@ const dataDir = path.join(__dirname, 'data');
 fs.mkdirSync(dataDir, { recursive: true });
 
 const db = new Database(path.join(dataDir, 'portal.sqlite'));
+const dataDir = path.join(__dirname, 'data');
+fs.mkdirSync(dataDir, { recursive: true });
+
+const db = new Database(path.join(dataDir, 'portal.sqlite'));
 console.log("Database path:", dbPath);
 
 const db = new Database(dbPath);
