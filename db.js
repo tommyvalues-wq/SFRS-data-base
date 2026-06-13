@@ -1,6 +1,11 @@
 const Database = require('better-sqlite3');
+const fs = require('fs');
 const path = require('path');
-const dbPath = path.join(__dirname, 'data', 'portal.sqlite');
+
+const dataDir = path.join(__dirname, 'data');
+fs.mkdirSync(dataDir, { recursive: true });
+
+const db = new Database(path.join(dataDir, 'portal.sqlite'));
 console.log("Database path:", dbPath);
 
 const db = new Database(dbPath);
