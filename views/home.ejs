@@ -1,1 +1,37 @@
-<%- include('layout-top') %><section class="hero"><div><p class="eyebrow">Professional Standards Portal</p><h1>Secure staff records for your Roblox fire service community.</h1><p>Manage selected Roblox-authenticated members, firefighter profiles, standards cases, and audit history from a clean, role-protected dashboard.</p><a class="btn big" href="/auth/roblox">Continue with Roblox</a></div><div class="panel"><h3>Included modules</h3><ul><li>Roblox OIDC sign-in</li><li>Professional Standards Team permissions</li><li>Firefighter record management</li><li>Disciplinary action tracking</li><li>Owner-controlled user allow-list</li></ul></div></section><%- include('layout-bottom') %>
+<%- include('layout-top') %>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">WELCOME TO THE</p>
+    <h2>STAFFORDSHIRE FIRE AND RESCUE ROBLOX</h2>
+    <h3>Professional Standards Portal</h3>
+    <p>
+      Secure staff records for your Roblox fire service community.
+    </p>
+    <p class="muted">
+      Manage selected Roblox-authenticated members, firefighter profiles,
+      standards cases, and audit history from a clean, role-protected dashboard.
+    </p>
+    <a class="primary-btn" href="/auth/roblox">Continue with Roblox</a>
+  </div>
+</section>
+
+<section class="modules">
+  <p class="eyebrow center">SYSTEM MODULES</p>
+  <h2>Included modules</h2>
+
+  <div class="module-grid">
+    <div class="module-card">🛡️ <h3>Roblox OIDC Sign-in</h3><p>Secure authentication using Roblox OpenID Connect.</p></div>
+    <div class="module-card">👥 <h3>Professional Standards Team Permissions</h3><p>Role-based access for owners, PST members, and general members.</p></div>
+    <div class="module-card">🚒 <h3>Firefighter Record Management</h3><p>Create, update, and manage firefighter profiles.</p></div>
+    <div class="module-card">📋 <h3>Disciplinary Action Tracking</h3><p>Log, manage, and review disciplinary actions and outcomes.</p></div>
+    <div class="module-card">🔒 <h3>Owner-Controlled User Allow-List</h3><p>Owners control who can access the portal and their roles.</p></div>
+  </div>
+</section>
+
+<section class="notice">
+  ⚠️ <strong>Unofficial operational demo.</strong><br>
+  Do not use as a public representation of Staffordshire Fire and Rescue Service without authorisation.
+</section>
+
+<%- include('layout-bottom') %>
