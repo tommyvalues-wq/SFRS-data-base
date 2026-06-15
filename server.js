@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 const helmet = require('helmet');
 const path = require('path');
 const { db, audit } = require('./db');
@@ -9,24 +8,17 @@ const { authUrl, callback } = require('./auth');
 const { attachUser, requireLogin, requirePST, requireOwner } = require('./middleware');
 const app = express();
 app.set('view engine', 'ejs'); app.set('views', path.join(__dirname, 'views'));
-app.use(helmet({ contentSecurityPolicy: false }));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'Public')));
 app.use(session({
-  store: new SQLiteStore({
-    db: 'sessions.sqlite',
-    dir: path.join(__dirname, 'data')
-  }),
   secret: process.env.SESSION_SECRET || 'dev-only-change-me',
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
     sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production'
+    secure: false
   }
-app.use(session({   store: new SQLiteStore({     db: 'sessions.sqlite',     dir: path.join(__dirname, 'data')   }),   secret: process.env.SESSION_SECRET || 'dev-only-change-me',   resave: false,   saveUninitialized: false,   cookie: {     httpOnly: true,     sameSite: 'lax',     secure: process.env.NODE_ENV === 'production'   } }));  app.use(attachUser);
-app.use(attachUser);
+}));
+
 const roles = { owner: 'Owner', pst: 'Professional Standards', member: 'Member' };
 app.locals.roles = roles;
 app.get('/', (req,res)=>res.render('home',{title:'Staff Portal'}));
