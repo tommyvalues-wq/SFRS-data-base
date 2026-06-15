@@ -6,24 +6,28 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand">
-    <div class="crest">🚒</div>
+  <a class="brand" href="/">
+    <div class="crest">🔥</div>
     <div>
       <h1>STAFFORDSHIRE FIRE AND RESCUE <span>ROBLOX</span></h1>
       <p>PROFESSIONAL STANDARDS PORTAL</p>
     </div>
-  </div>
+  </a>
 
   <nav>
     <a href="/dashboard">Dashboard</a>
     <a href="/firefighters">Firefighters</a>
     <a href="/discipline">Disciplinary Actions</a>
     <a href="/audit">Audit Log</a>
-    <% if (user) { %>
-      <form method="post" action="/logout"><button>Sign Out</button></form>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+      <form method="post" action="/logout">
+        <button class="nav-btn">Sign Out</button>
+      </form>
     <% } else { %>
-      <a class="signin" href="/login">Sign In</a>
+      <a class="nav-btn" href="/login">Sign In</a>
     <% } %>
   </nav>
 </header>
+
 <main>
