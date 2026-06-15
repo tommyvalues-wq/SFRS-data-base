@@ -11,8 +11,21 @@ const app = express();
 app.set('view engine', 'ejs'); app.set('views', path.join(__dirname, 'views'));
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(session({ store: new SQLiteStore({ db: 'sessions.sqlite', dir: path.join(__dirname, '..', 'db') }), secret: process.env.SESSION_SECRET || 'dev-only-change-me', resave:false, saveUninitialized:false, cookie:{ httpOnly:true, sameSite:'lax', secure: process.env.NODE_ENV==='production' }}));
+app.use(express.static(path.join(__dirname, 'Public')));
+app.use(session({
+  store: new SQLiteStore({
+    db: 'sessions.sqlite',
+    dir: path.join(__dirname, 'data')
+  }),
+  secret: process.env.SESSION_SECRET || 'dev-only-change-me',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production'
+  }
+}));secret: process.env.SESSION_SECRET || 'dev-only-change-me', resave:false, saveUninitialized:false, cookie:{ httpOnly:true, sameSite:'lax', secure: process.env.NODE_ENV==='production' }}));
 app.use(attachUser);
 const roles = { owner: 'Owner', pst: 'Professional Standards', member: 'Member' };
 app.locals.roles = roles;
