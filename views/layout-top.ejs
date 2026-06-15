@@ -1,1 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><%= title %> | Staffordshire Fire Staff Portal</title><link rel="stylesheet" href="/style.css"></head><body><nav><a class="brand" href="/"><span class="crest">SFR</span><span>Staffordshire Fire<br><small>Staff Portal · Unofficial Demo</small></span></a><div><a href="/dashboard">Dashboard</a><a href="/firefighters">Firefighters</a><% if (user && ['owner','pst'].includes(user.role)) { %><a href="/discipline">Standards</a><a href="/audit">Audit</a><% } %><% if (user && user.role==='owner') { %><a href="/admin/users">Users</a><% } %><% if (user) { %><form method="post" action="/logout" class="inline"><button>Log out</button></form><% } else { %><a class="btn" href="/login">Sign in</a><% } %></div></nav><main>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %> | Staffordshire Fire and Rescue ROBLOX</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="crest">🚒</div>
+    <div>
+      <h1>STAFFORDSHIRE FIRE AND RESCUE <span>ROBLOX</span></h1>
+      <p>PROFESSIONAL STANDARDS PORTAL</p>
+    </div>
+  </div>
+
+  <nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/firefighters">Firefighters</a>
+    <a href="/discipline">Disciplinary Actions</a>
+    <a href="/audit">Audit Log</a>
+    <% if (user) { %>
+      <form method="post" action="/logout"><button>Sign Out</button></form>
+    <% } else { %>
+      <a class="signin" href="/login">Sign In</a>
+    <% } %>
+  </nav>
+</header>
+<main>
