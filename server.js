@@ -25,7 +25,7 @@ app.use(session({
     sameSite: 'lax',
     secure: process.env.NODE_ENV === 'production'
   }
-}));secret: process.env.SESSION_SECRET || 'dev-only-change-me', resave:false, saveUninitialized:false, cookie:{ httpOnly:true, sameSite:'lax', secure: process.env.NODE_ENV==='production' }}));
+app.use(session({   store: new SQLiteStore({     db: 'sessions.sqlite',     dir: path.join(__dirname, 'data')   }),   secret: process.env.SESSION_SECRET || 'dev-only-change-me',   resave: false,   saveUninitialized: false,   cookie: {     httpOnly: true,     sameSite: 'lax',     secure: process.env.NODE_ENV === 'production'   } }));  app.use(attachUser);
 app.use(attachUser);
 const roles = { owner: 'Owner', pst: 'Professional Standards', member: 'Member' };
 app.locals.roles = roles;
