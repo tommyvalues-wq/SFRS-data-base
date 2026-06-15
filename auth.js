@@ -1,12 +1,1 @@
-const { Issuer, generators } = require('openid-client');
-let clientPromise;
-async function getClient() {
-  if (!clientPromise) clientPromise = (async () => {
-    const issuer = await Issuer.discover('https://apis.roblox.com/oauth/.well-known/openid-configuration');
-    return new issuer.Client({ client_id: process.env.ROBLOX_CLIENT_ID, client_secret: process.env.ROBLOX_CLIENT_SECRET, redirect_uris: [process.env.ROBLOX_REDIRECT_URI], response_types: ['code'], id_token_signed_response_alg: 'ES256' });
-  })();
-  return clientPromise;
-}
-async function authUrl(req) { const client = await getClient(); const state = generators.state(); const nonce = generators.nonce(); req.session.oauth = { state, nonce }; return client.authorizationUrl({ scope: 'openid profile', state, nonce }); }
-async function callback(req) { const client = await getClient(); const params = client.callbackParams(req); const tokenSet = await client.callback(process.env.ROBLOX_REDIRECT_URI, params, req.session.oauth || {}); delete req.session.oauth; return client.userinfo(tokenSet.access_token); }
-module.exports = { authUrl, callback };
+<%- include('layout-top') %><section class="page"><div class="card"><h2><%= title %></h2><form method="post" action="<%= c.id ? '/discipline/'+c.id : '/discipline' %>"><label>Firefighter</label><select name="firefighter_id" required><% firefighters.forEach(f=>{ %><option value="<%= f.id %>" <%= c.firefighter_id==f.id?'selected':'' %>><%= f.name %> — <%= f.rank %></option><% }) %></select><label>Type</label><input name="type" required value="<%= c.type || '' %>"><label>Severity</label><select name="severity"><% ['Low','Medium','High','Critical'].forEach(s=>{ %><option <%= (c.severity||'Low')===s?'selected':'' %>><%= s %></option><% }) %></select><label>Summary</label><textarea name="summary" required><%= c.summary || '' %></textarea><label>Outcome</label><textarea name="outcome"><%= c.outcome || '' %></textarea><label>Action Date</label><input type="date" name="action_date" value="<%= c.action_date || new Date().toISOString().slice(0,10) %>"><button class="btn">Save</button></form></div></section><%- include('layout-bottom') %>

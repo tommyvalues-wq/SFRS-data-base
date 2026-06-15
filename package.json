@@ -1,1 +1,7 @@
-{"scripts":{"start":"node server.js","dev":"node server.js","seed":"node seed.js"},"dependencies":{"better-sqlite3":"^11.10.0","dotenv":"^16.4.7","ejs":"^3.1.10","express":"^4.21.2","express-session":"^1.18.1","helmet":"^8.0.0","openid-client":"^5.7.1"},"engines":{"node":">=20"}}
+PORT=3000
+BASE_URL=http://localhost:3000
+SESSION_SECRET=change-this-to-a-long-random-secret
+ROBLOX_CLIENT_ID=
+ROBLOX_CLIENT_SECRET=
+ROBLOX_REDIRECT_URI=http://localhost:3000/auth/roblox/callback
+INITIAL_OWNER_ROBLOX_ID=
